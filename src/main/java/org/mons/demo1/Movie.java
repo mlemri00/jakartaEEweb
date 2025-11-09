@@ -15,5 +15,9 @@ public class Movie {
     public int getId(){
         return  id;
     }
-
+    public String getName(){return name;}
+    public String getDescription(){return description;}
+    public int getYear(){
+       return year;
+    }
 }

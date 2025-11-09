@@ -9,7 +9,7 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<a href="servlet">Servlet</a>
+<a href="movies">Servlet</a>
 
 </body>
 </html>
