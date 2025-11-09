@@ -1,0 +1,8 @@
+services:
+  tomee:
+    image: tomee:jre21-webprofile
+    container_name: tomee
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target:/usr/local/tomee/webapps
