@@ -1,10 +1,12 @@
-package org.mons.demo1;
+package org.mons.demo1.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mons.demo1.models.Movie;
+import org.mons.demo1.util.jdbcConnector;
 
 import java.io.IOException;
 import java.sql.*;
@@ -19,19 +21,9 @@ public class MovieServlet extends HttpServlet {
 
 
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
+        Connection conn = jdbcConnector.getConnection();
 
-
-        try{
-
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/movies","root","root8081");
-        PreparedStatement pst = conn.prepareStatement("select * from movies;");
-
-
+        PreparedStatement pst = conn.prepareStatement("SELECT * from movies;");
         ResultSet result = pst.executeQuery();
 
         while(result.next()){

@@ -1,4 +1,4 @@
-package org.mons.demo1;
+package org.mons.demo1.models;
 
 public class Movie {
     private long id;
