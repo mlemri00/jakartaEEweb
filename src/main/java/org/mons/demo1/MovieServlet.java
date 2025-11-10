@@ -7,24 +7,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
 
-    private final List<Movie> movies = MovieService.getMovies();
+    private final List<Movie> movies = new ArrayList<>();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setAttribute("movies", movies);
 
-        request.getRequestDispatcher("movies.jsp").forward(request, response);
-    }
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
 
 
@@ -35,14 +28,38 @@ public class MovieServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/movies","root","secret");
-        PreparedStatement pst = conn.prepareStatement("select * from movies where name like = ? ");
-        pst.setString(1,"rings");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://db:3306/movies","root","root8081");
+        PreparedStatement pst = conn.prepareStatement("select * from movies;");
+
+
+        ResultSet result = pst.executeQuery();
+
+        while(result.next()){
+            long movieId = result.getLong("id");
+            String movieTitle = result.getString("title");
+            String movieDesc = result.getString("description");
+            int movieYear= result.getInt("year");
+
+
+            Movie movie = new Movie(movieId,movieTitle,movieDesc,movieYear);
+            movies.add(movie);
+        }
+        conn.close();
+
 
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
 
 
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        try {
+            showAllMovies(request,response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

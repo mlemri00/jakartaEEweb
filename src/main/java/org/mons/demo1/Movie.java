@@ -1,18 +1,18 @@
 package org.mons.demo1;
 
 public class Movie {
-    private int id;
+    private long id;
     private String name;
     private String description;
     private int year;
 
-    public Movie(int id, String name, String description, int year){
+    public Movie(long id, String name, String description, int year){
         this.id = id;
         this.name = name;
         this.description= description;
         this.year=year;
     }
-    public int getId(){
+    public long getId(){
         return  id;
     }
     public String getName(){return name;}
