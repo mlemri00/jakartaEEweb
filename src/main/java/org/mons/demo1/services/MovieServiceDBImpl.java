@@ -1,5 +1,6 @@
 package org.mons.demo1.services;
 
+import com.mysql.cj.xdevapi.PreparableStatement;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.jdbcConnector;
 
@@ -42,10 +43,11 @@ public class MovieServiceDBImpl implements MovieService{
 
     @Override
     public Movie getById(int id) {
-        Connection connection = jdbcConnector.getConnection();
         Movie movie;
 
         try{
+            Connection connection = jdbcConnector.getConnection();
+
             PreparedStatement pst = connection.prepareStatement("SELECT * FROM movies where id = ? ");
             pst.setInt(1,id);
             ResultSet result = pst.executeQuery();
@@ -63,6 +65,7 @@ public class MovieServiceDBImpl implements MovieService{
             System.out.println("No se pudo ejecutar la conexión con la bases de datos");
 
         }
+
         return new Movie();
     }
 
@@ -80,7 +83,7 @@ public class MovieServiceDBImpl implements MovieService{
             pst.setInt(3, movie.getYear());
 
             affectedRows = pst.executeUpdate();
-
+            connection.close();
         }catch (SQLException sqlException){
             System.out.println("No se pudo ejecutar la conexión con la bases de datos");
 
@@ -92,13 +95,50 @@ public class MovieServiceDBImpl implements MovieService{
         }
         return false;
 
-
-
-
     }
 
     @Override
-    public Movie deleteMovieById(int id) {
-        return null;
+    public Movie deleteMovieById(int id){
+        Movie movie =  new Movie();
+        int affectedRows = 0;
+        try{
+            Connection connection = jdbcConnector.getConnection();
+            PreparedStatement pst = connection.prepareStatement("SELECT * FROM movies where id = ? ");
+            pst.setInt(1,id);
+            ResultSet result = pst.executeQuery();
+            movie = new Movie(
+                    result.getLong("id"),
+                    result.getString("title"),
+                    result.getString("description"),
+                    result.getInt("year")
+            );
+
+        }catch (SQLException e){
+            System.out.println("No se pudo ejecutar la conexión con la bases de datos");
+
+        }
+
+        try {
+            Connection connection = jdbcConnector.getConnection();
+
+            PreparedStatement pst = connection.prepareStatement("DELETE FROM movies where id = ? ");
+            pst.setLong(1,id);
+
+            affectedRows =pst.executeUpdate();
+
+
+
+        }catch (SQLException s){
+
+            System.out.println("No se pudo ejecutar la conexión con la bases de datos");
+
+        }
+
+        if (affectedRows>0){
+            return movie;
+        }
+        return movie;
+
+
     }
 }
