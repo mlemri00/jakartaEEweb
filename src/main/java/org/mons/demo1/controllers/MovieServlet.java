@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.mons.demo1.models.Movie;
+import org.mons.demo1.services.MovieServiceOrmImpl;
 import org.mons.demo1.util.jdbcConnector;
 
 import java.io.IOException;
@@ -15,29 +16,12 @@ import java.util.List;
 
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
-
-    private final List<Movie> movies = new ArrayList<>();
+    MovieServiceOrmImpl MSOI = new MovieServiceOrmImpl();
+    private final List<Movie> movies = MSOI.getMovies();
 
 
 
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
-        Connection conn = jdbcConnector.getConnection();
-
-        PreparedStatement pst = conn.prepareStatement("SELECT * from movies;");
-        ResultSet result = pst.executeQuery();
-
-        while(result.next()){
-            long movieId = result.getLong("id");
-            String movieTitle = result.getString("title");
-            String movieDesc = result.getString("description");
-            int movieYear= result.getInt("year");
-
-
-            Movie movie = new Movie(movieId,movieTitle,movieDesc,movieYear);
-            movies.add(movie);
-        }
-        conn.close();
-
 
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
