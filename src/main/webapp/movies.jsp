@@ -16,7 +16,7 @@
 <ul>
         <c:forEach var="movie" items="${movies}">
     <li>
-        <c:out value="${movie.getName()} ${movie.getYear()}"/>
+        <c:out value="${movie.getTitle()} ${movie.getYear()}"/>
     </li>
         </c:forEach>
 

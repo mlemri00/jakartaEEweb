@@ -8,15 +8,16 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+
+    private String title;
     @Column(name = "description")
     private String description;
-    @Transient private int year;
+    private int year;
 
 
-    public Movie(long id, String name, String description, int year){
+    public Movie(long id, String title, String description, int year){
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.description= description;
         this.year=year;
     }
@@ -28,7 +29,7 @@ public class Movie {
     public long getId(){
         return  id;
     }
-    public String getName(){return name;}
+    public String getTitle(){return title;}
     public String getDescription(){return description;}
     public int getYear(){
        return year;

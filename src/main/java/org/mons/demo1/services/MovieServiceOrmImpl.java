@@ -1,11 +1,9 @@
 package org.mons.demo1.services;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.ConnectionManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieServiceOrmImpl implements MovieService{
@@ -30,12 +28,12 @@ public class MovieServiceOrmImpl implements MovieService{
         EntityManager em = ConnectionManager.getEntityManager();
         em.persist(movie);
 
-        String name = movie.getName();
+        String name = movie.getTitle();
         em.clear();
-        Movie movie1 = em.createQuery("select m from Movie m where m.name = :name", Movie.class)
+        Movie movie1 = em.createQuery("select m from Movie m where m.title = :name", Movie.class)
                 .setParameter("name",name).getSingleResult();
 
-        if (!movie1.getName().isEmpty()){
+        if (!movie1.getTitle().isEmpty()){
             return true;
         }
         em.close();
@@ -52,7 +50,7 @@ public class MovieServiceOrmImpl implements MovieService{
     public Movie deleteMovieById(int id) {
         EntityManager em = ConnectionManager.getEntityManager();
         Movie movie = em.find(Movie.class,id) ;
-        if (!movie.getName().isEmpty()){
+        if (!movie.getTitle().isEmpty()){
             em.clear();
 
             em.remove(movie);

@@ -1,6 +1,5 @@
 package org.mons.demo1.services;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.jdbcConnector;
 
@@ -78,7 +77,7 @@ public class MovieServiceDBImpl implements MovieService{
 
             PreparedStatement pst = connection.prepareStatement(
                     "INSERT INTO movies (title,description, year) VALUES(?,?,?) " );
-            pst.setString(1, movie.getName());
+            pst.setString(1, movie.getTitle());
             pst.setString(2, movie.getDescription());
             pst.setInt(3, movie.getYear());
 
