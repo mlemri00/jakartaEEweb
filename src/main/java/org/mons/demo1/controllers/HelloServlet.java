@@ -9,8 +9,6 @@ import org.mons.demo1.models.Movie;
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
-    Object ob = new Movie(1,"d",",e",23);
-
     public void init() {
         message = "Hello World!";
     }
