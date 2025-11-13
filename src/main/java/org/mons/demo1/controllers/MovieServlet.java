@@ -17,10 +17,11 @@ import java.util.List;
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
     MovieServiceOrmImpl MSOI = new MovieServiceOrmImpl();
-    private final List<Movie> movies = MSOI.getMovies();
+
 
 
     private void showMovie(String id,HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+
         int idInt = Integer.parseInt(id);
 
 
@@ -31,7 +32,7 @@ public class MovieServlet extends HttpServlet {
     }
 
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        List<Movie> movies = MSOI.getMovies();
 
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
@@ -51,13 +52,25 @@ public class MovieServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String title = req.getParameter("title").trim();
-        String description =  req.getParameter("description").trim();
-        int year = Integer.parseInt(req.getParameter("year").trim());
-        if (!title.isEmpty() && !description.isEmpty() && year != 0){
-            MSOI.addMovie(
-                    new Movie(0L,title,description,year)
-            );
-        }
+       String title;
+       String description;
+       int year;
+
+
+       try{
+           title = req.getParameter("title").trim();
+           description =  req.getParameter("description").trim();
+           year = Integer.parseInt(req.getParameter("year").trim());
+
+           if (!title.isEmpty() && !description.isEmpty() && year != 0) {
+               MSOI.addMovie(
+                       new Movie(0L, title, description, year)
+               );
+           }
+       }catch (NumberFormatException e){
+           resp.sendError(403,"Aprende escribir anda");
+       }
+       resp.sendRedirect("movies");
+
     }
 }
