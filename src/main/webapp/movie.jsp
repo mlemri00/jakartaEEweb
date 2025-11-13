@@ -17,6 +17,16 @@
     <h1><c:out  value="${movie.getTitle()}"/></h1>
     <p><c:out value="${movie.getYear()}"/></p>
     <p><c:out  value="${movie.getDescription()}"/></p>
+
+
+    <form action="delete" method="post">
+        <input type="hidden" name="id" value="<c:out value="${movie.getId()}">">
+        <button type="submit">Delete</button>
+    </form>
+
+
+
+
 </div>
 
 </body>
