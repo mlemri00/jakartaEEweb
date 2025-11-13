@@ -15,7 +15,7 @@
 <body>
 <div>
     <h1><c:out  value="${movie.getTitle()}"/></h1>
-    <p><c:out value="${movie.getYear()}"/></p>>
+    <p><c:out value="${movie.getYear()}"/></p>
     <p><c:out  value="${movie.getDescription()}"/></p>
 </div>
 

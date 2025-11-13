@@ -67,10 +67,11 @@ public class MovieServlet extends HttpServlet {
                        new Movie(0L, title, description, year)
                );
            }
+           resp.sendRedirect("movies");
        }catch (NumberFormatException e){
-           resp.sendError(403,"Aprende escribir anda");
+           resp.sendRedirect("error");
        }
-       resp.sendRedirect("movies");
+
 
     }
 }
