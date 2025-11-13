@@ -1,6 +1,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-< %--
+<%--
   Created by IntelliJ IDEA.
   User: lemr
   Date: 13/11/25
@@ -15,7 +15,8 @@
 <body>
 <div>
     <h1><c:out  value="${movie.getTitle()}"/></h1>
-
+    <p><c:out value="${movie.getYear()}"/></p>>
+    <p><c:out  value="${movie.getDescription()}"/></p>
 </div>
 
 </body>

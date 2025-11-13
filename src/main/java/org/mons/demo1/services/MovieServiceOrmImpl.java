@@ -26,16 +26,9 @@ public class MovieServiceOrmImpl implements MovieService{
     @Override
     public boolean addMovie(Movie movie) {
         EntityManager em = ConnectionManager.getEntityManager();
+        em.getTransaction().begin();
         em.persist(movie);
-
-        String name = movie.getTitle();
-        em.clear();
-        Movie movie1 = em.createQuery("select m from Movie m where m.title = :name", Movie.class)
-                .setParameter("name",name).getSingleResult();
-
-        if (!movie1.getTitle().isEmpty()){
-            return true;
-        }
+        em.getTransaction().commit();
         em.close();
 
 

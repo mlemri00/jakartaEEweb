@@ -30,26 +30,34 @@ public class MovieServlet extends HttpServlet {
 
     }
 
-
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
 
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
         String id = request.getParameter("id");
         if (id!=null){
             showMovie(id, request,response);
-
         }else {
             showAllMovies(request,response);
-
         }
-
-
     }
 
-
-
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String title = req.getParameter("title").trim();
+        String description =  req.getParameter("description").trim();
+        int year = Integer.parseInt(req.getParameter("year").trim());
+        if (!title.isEmpty() && !description.isEmpty() && year != 0){
+            MSOI.addMovie(
+                    new Movie(0L,title,description,year)
+            );
+        }
+    }
 }
