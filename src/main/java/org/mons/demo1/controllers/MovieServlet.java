@@ -20,22 +20,34 @@ public class MovieServlet extends HttpServlet {
     private final List<Movie> movies = MSOI.getMovies();
 
 
+    private void showMovie(String id,HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+        int idInt = Integer.parseInt(id);
 
-    private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
 
+        Movie movie = MSOI.getById(idInt);
+        req.setAttribute("movie",movie);
+        req.getRequestDispatcher("/movie.jsp").forward(req,resp);
+
+    }
+
+
+    private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
 
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        if (id!=null){
+            showMovie(id, request,response);
 
-
-        try {
+        }else {
             showAllMovies(request,response);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
         }
+
+
     }
 
 

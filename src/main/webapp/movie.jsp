@@ -1,25 +1,22 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--
+< %--
   Created by IntelliJ IDEA.
   User: lemr
-  Date: 9/11/25
-  Time: 19:02
+  Date: 13/11/25
+  Time: 5:48
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Movie</title>
 </head>
 <body>
-<ul>
-        <c:forEach var="movie" items="${movies}">
-    <a href="movies?id=<c:out value='${movie.getId()}'/>">
-        <c:out value="${movie.getTitle()} ${movie.getYear()}"/>
-    </a>
-        </c:forEach>
+<div>
+    <h1><c:out  value="${movie.getTitle()}"/></h1>
 
-</ul>
+</div>
+
 </body>
 </html>
