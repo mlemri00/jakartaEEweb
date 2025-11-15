@@ -42,13 +42,19 @@ public class MovieServiceOrmImpl implements MovieService{
     @Override
     public Movie deleteMovieById(int id) {
         EntityManager em = ConnectionManager.getEntityManager();
+
         Movie movie = em.find(Movie.class,id) ;
         if (!movie.getTitle().isEmpty()){
-            em.clear();
+            try {
+                em.getTransaction().begin();
+                em.remove(movie);
+            }catch (Exception e){
+                em.getTransaction().rollback();
 
-            em.remove(movie);
-            em.close();
+            }
+         em.getTransaction().commit();
         }
+        em.close();
         return movie;
     }
 }

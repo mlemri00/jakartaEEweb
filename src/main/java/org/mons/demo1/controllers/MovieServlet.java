@@ -1,5 +1,6 @@
 package org.mons.demo1.controllers;
 
+import com.google.protobuf.TextFormat;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,8 +20,25 @@ public class MovieServlet extends HttpServlet {
     MovieServiceOrmImpl MSOI = new MovieServiceOrmImpl();
 
 
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getMethod().equalsIgnoreCase("post")){
+            String method =  req.getParameter("_method");
+            if (method == null){return;}
+            switch (method){
+                case "delete" -> doDelete(req, resp);
+                case "put" -> doPut(req, resp);
+                case "post" -> doPost(req, resp);
+                default -> {
+                    return;
+                }
+            }
+        }else{//Preguntar a Pere, porque si se saca el super.service del else el formulario al recargar la pàgina se reenvia
+        super.service(req,resp);
+        }
+    }
 
-    private void showMovie(String id,HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+    private void showMovie(String id, HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 
         int idInt = Integer.parseInt(id);
 
@@ -41,9 +59,8 @@ public class MovieServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         String id = request.getParameter("id");
-        if (id!=null){
+        if (id != null && !id.isBlank()){
             showMovie(id, request,response);
         }else {
             showAllMovies(request,response);
@@ -56,22 +73,32 @@ public class MovieServlet extends HttpServlet {
        String description;
        int year;
 
-
        try{
            title = req.getParameter("title").trim();
            description =  req.getParameter("description").trim();
            year = Integer.parseInt(req.getParameter("year").trim());
 
            if (!title.isEmpty() && !description.isEmpty() && year != 0) {
-               MSOI.addMovie(
-                       new Movie(0L, title, description, year)
-               );
+               MSOI.addMovie(new Movie(0L, title, description, year));
+
            }
-           resp.sendRedirect("movies");
+
+
+
        }catch (NumberFormatException e){
-           resp.sendRedirect("error");
+        resp.sendRedirect("error");
        }
 
+       resp.sendRedirect("movies");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id  = Integer.parseInt(req.getParameter("id"));
+        MSOI.deleteMovieById(id);
+
+        req.removeAttribute("id");
+        resp.sendRedirect("movies");
 
     }
 }

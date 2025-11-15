@@ -18,8 +18,7 @@
     div{
         width: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
 
     }
     img{
@@ -27,11 +26,18 @@
         height: auto;
         display: block;
     }
+    h1{
+        font-size: 60px;
+    }
+    p{
 
+        font-size: 12px;
+    }
 </style>
 <body>
 <div>
-<img src="Stargrew_0.png">
+    <p>Fatal Error </p>
+
 </div>
 </body>
 </html>

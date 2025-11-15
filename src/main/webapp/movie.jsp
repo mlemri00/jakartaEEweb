@@ -19,5 +19,11 @@
     <p><c:out  value="${movie.getDescription()}"/></p>
 </div>
 
+<form action="movies" method="post">
+<input type="hidden" value="delete" name="_method">
+    <input type="hidden" name="id" value="<c:out value="${movie.getId()}"/>">
+    <button type="submit">Delete</button>
+</form>
+
 </body>
 </html>

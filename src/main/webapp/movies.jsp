@@ -38,6 +38,7 @@
     </li>
 </ul>
     <form id="saveForm" action="movies" method="post">
+        <input type="hidden" value="post" name="_method">
         <label for="text">Enter movie title</label>
         <input id="text" type="text" name="title">
 
