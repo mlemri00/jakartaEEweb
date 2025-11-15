@@ -34,4 +34,23 @@ public class Movie {
     public int getYear(){
        return year;
     }
+
+    public void setTitle(String title){
+        this.title=title;
+    }
+
+    public void setDescription(String description){
+        this.description=description;
+    }
+
+    public void setYear(int year){
+        this.year=year;
+    }
+
+    public void updateMovie(String title, String description, int year){
+        this.title=title;
+        this.description=description;
+        this.year=year;
+    }
+
 }

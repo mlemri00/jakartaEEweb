@@ -95,4 +95,19 @@ public class MovieServlet extends HttpServlet {
         resp.sendRedirect("movies");
 
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Movie movie = new Movie(
+               Long.parseLong(req.getParameter("id")),
+                req.getParameter("title"),
+                req.getParameter("description"),
+               Integer.parseInt(req.getParameter("year"))
+        );
+
+        MSOI.updateMovie(movie);
+        resp.sendRedirect("movies");
+
+
+    }
 }

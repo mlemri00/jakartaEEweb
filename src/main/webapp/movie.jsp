@@ -14,9 +14,19 @@
 </head>
 <body>
 <div>
-    <h1><c:out  value="${movie.getTitle()}"/></h1>
-    <p><c:out value="${movie.getYear()}"/></p>
-    <p><c:out  value="${movie.getDescription()}"/></p>
+   <form action="movies" method="post" >
+       <input type="hidden" name="_method" value="put">
+       <input type="hidden" name="id" value="<c:out value="${movie.getId()}"/>">
+       <label for="title">Title</label>
+       <input id="title" type="text" name="title" value="<c:out value="${movie.getTitle()}"/>">
+       <label for="description">Description</label>
+       <input id="description" type="text" name="description" value="<c:out value="${movie.getDescription()}"/>">
+       <label for="year">Year</label>
+       <input id="year" type="number" name="year" value="<c:out value="${movie.getYear()}"/>">
+
+       <button type="submit">Edit</button>
+   </form>
+
 </div>
 
 <form action="movies" method="post">

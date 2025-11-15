@@ -38,7 +38,6 @@ public class MovieORMImpl implements MovieService{
 
 
     }
-
     @Override
     public Movie deleteMovieById(int id) {
         EntityManager em = ConnectionManager.getEntityManager();
@@ -57,4 +56,26 @@ public class MovieORMImpl implements MovieService{
         em.close();
         return movie;
     }
+
+    public boolean updateMovie(Movie movie){
+        EntityManager em = ConnectionManager.getEntityManager();
+        Movie movieToFetch = em.find(Movie.class,movie.getId());
+        movieToFetch.updateMovie(
+                movie.getTitle(),
+                movie.getDescription(),
+                movie.getYear()
+        );
+        try{
+            em.getTransaction().begin();
+            em.persist(movieToFetch);
+        }catch (Exception e){
+            em.getTransaction().rollback();
+        }
+        em.getTransaction().commit();
+
+
+        return false;
+    }
+
+
 }
