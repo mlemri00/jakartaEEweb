@@ -2,32 +2,36 @@ package org.mons.demo1.services;
 
 import org.mons.demo1.DAO.MovieORMImpl;
 import org.mons.demo1.DAO.MovieService;
+import org.mons.demo1.DTO.MovieDTO;
 import org.mons.demo1.models.Movie;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class MovieServiceImpl extends MovieService{
+public class MovieServiceImpl {
 
     MovieService dataRaw = new MovieORMImpl();
 
 
-    @Override
-    public List<Movie> getMovies() {
-        return dataRaw.getMovies();
+
+    public List<MovieDTO> getMovies() {
+        return dataRaw.getMovies().stream().map(MovieDTO::new).collect(Collectors.toList());
     }
 
-    @Override
-    public Movie getById(int id) {
-        return dataRaw.getById(id);
+
+    public MovieDTO getById(int id) {
+        return new MovieDTO(dataRaw.getById(id));
     }
 
-    @Override
+
     public boolean addMovie(Movie movie) {
-        return dataRaw.addMovie(movie);
+        boolean movieAdded = dataRaw.addMovie(movie);
+
+        return movieAdded;
     }
 
-    @Override
-    public Movie deleteMovieById(int id) {
-        return dataRaw.deleteMovieById(id);
+
+    public MovieDTO deleteMovieById(int id) {
+        return new MovieDTO(dataRaw.deleteMovieById(id));
     }
 }
