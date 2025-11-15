@@ -1,30 +1,26 @@
 package org.mons.demo1.controllers;
 
-import com.google.protobuf.TextFormat;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.mons.demo1.models.Movie;
-import org.mons.demo1.services.MovieServiceOrmImpl;
-import org.mons.demo1.util.jdbcConnector;
+import org.mons.demo1.DAO.MovieORMImpl;
 
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
-    MovieServiceOrmImpl MSOI = new MovieServiceOrmImpl();
+    MovieORMImpl MSOI = new MovieORMImpl();
 
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getMethod().equalsIgnoreCase("post")){
             String method =  req.getParameter("_method");
-            if (method == null){return;}
+           if (method == null){return;}
             switch (method){
                 case "delete" -> doDelete(req, resp);
                 case "put" -> doPut(req, resp);
@@ -33,8 +29,8 @@ public class MovieServlet extends HttpServlet {
                     return;
                 }
             }
-        }else{//Preguntar a Pere, porque si se saca el super.service del else el formulario al recargar la pàgina se reenvia
-        super.service(req,resp);
+        }else{//Preguntar a Pere, porque si se saca el super.service del else el formulario al recargar la pàgina se reenvia, y si siempre hay que tener los sendRedirect bajo control o se doble ejecutan
+            super.service(req,resp);
         }
     }
 
@@ -82,14 +78,12 @@ public class MovieServlet extends HttpServlet {
                MSOI.addMovie(new Movie(0L, title, description, year));
 
            }
-
-
-
-       }catch (NumberFormatException e){
+           resp.sendRedirect("movies");
+       }catch (Exception e){
         resp.sendRedirect("error");
        }
 
-       resp.sendRedirect("movies");
+
     }
 
     @Override

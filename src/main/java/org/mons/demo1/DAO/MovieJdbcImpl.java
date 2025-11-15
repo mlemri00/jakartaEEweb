@@ -1,4 +1,4 @@
-package org.mons.demo1.services;
+package org.mons.demo1.DAO;
 
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.jdbcConnector;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieServiceDBImpl implements MovieService{
+public class MovieJdbcImpl implements MovieService{
 
     @Override
     public List<Movie> getMovies() {

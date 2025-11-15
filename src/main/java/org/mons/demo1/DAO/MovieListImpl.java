@@ -1,4 +1,4 @@
-package org.mons.demo1.services;
+package org.mons.demo1.DAO;
 
 
 
@@ -7,7 +7,7 @@ import org.mons.demo1.models.Movie;
 import java.util.Collections;
 import java.util.List;
 
-public class MovieServiceListImpl implements MovieService {
+public class MovieListImpl implements MovieService {
 
     private static List<Movie>movies;
 
