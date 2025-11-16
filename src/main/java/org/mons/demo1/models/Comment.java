@@ -2,6 +2,7 @@ package org.mons.demo1.models;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +11,9 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String comment;
+    private String commentText;
+    private Timestamp createdAt;
+
     @ManyToOne
     @JoinColumn(name = "movieId")
     private Movie movie;
@@ -19,7 +22,7 @@ public class Comment {
     }
     public Comment (long id, String comment,Movie movie){
         this.id=id;
-        this.comment=comment;
+        this.commentText=comment;
         this.movie=movie;
     }
 
@@ -28,20 +31,12 @@ public class Comment {
         return id;
     }
     public String getComment(){
-        return comment;
+        return commentText;
     }
 
     public Movie getMovie(){
         return movie;
     }
-    @Override
-    public boolean equals(Object obj) {
-        return ((Movie) obj).getId() == this.getId();
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id,comment);
-    }
 
 }

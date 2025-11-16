@@ -10,14 +10,13 @@ public class MovieDTO {
     private String title;
     private String description;
     private int year;
-    private List<Comment>comments;
+    private List<CommentDTO>comments;
 
     public MovieDTO(Movie movie){
         this.id= movie.getId();//Falla si no poner id, porqué?????
         this.description=movie.getDescription();
         this.title= movie.getTitle();
         this.year=movie.getYear();
-        this.comments= movie.getComments();
     }
     public MovieDTO(long id, String title,String description, int year){
         this.id=id;
@@ -39,10 +38,12 @@ public class MovieDTO {
     public int getYear(){
         return this.year;
     }
-    public List<Comment> getComments(){
+    public List<CommentDTO> getComments(){
         return this.comments;
     }
-
+    public void setComments(List<CommentDTO>comments){
+        this.comments=comments;
+    }
 
 
 

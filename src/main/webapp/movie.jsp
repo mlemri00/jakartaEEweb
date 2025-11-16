@@ -13,7 +13,7 @@
     #updateForm{
         display: flex;
         flex-direction: column;
-
+        width: 30%;
     }
 
 </style>
@@ -32,18 +32,18 @@
        <label for="year">Year</label>
        <input id="year" type="number" name="year" value="<c:out value="${movie.getYear()}"/>">
 
-       <button type="submit">Edit</button>
+       <button style="width: 40px" type="submit">Edit</button>
    </form>
 
 </div>
-
-<ul>
+<h2>Comentaris</h2>
+<ol>
     <c:forEach var="comment" items="${movie.getComments()}">
-        <li><c:out value="${comment.getComment()} "/></li>
+        <li><c:out value="${comment.getCommentText()} "/></li>
     </c:forEach>
-    <c:out value="${comments.size()}"/>
+    <c:out value="${movie.getComments().size()}"/>
 
-</ul>
+</ol>
 
 
 <form action="movies" method="post">

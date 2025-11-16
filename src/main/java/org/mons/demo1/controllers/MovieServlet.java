@@ -44,10 +44,8 @@ public class MovieServlet extends HttpServlet {
 
 
         MovieDTO movie = MSOI.getById(idInt);
-        List<Comment>comments= movie.getComments();
 
         req.setAttribute("movie",movie);
-        req.setAttribute("comments",comments);
         req.getRequestDispatcher("/movie.jsp").forward(req,resp);
 
     }
@@ -112,7 +110,8 @@ public class MovieServlet extends HttpServlet {
                Integer.parseInt(req.getParameter("year"))
         );
 
-      //  MSOI.updateMovie(movie);
+        MSOI.updateMovie(movie);
+
         resp.sendRedirect("movies");
 
 

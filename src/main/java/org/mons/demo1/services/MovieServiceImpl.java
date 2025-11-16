@@ -3,6 +3,7 @@ package org.mons.demo1.services;
 import jakarta.persistence.EntityManager;
 import org.mons.demo1.DAO.MovieORMImpl;
 import org.mons.demo1.DAO.MovieService;
+import org.mons.demo1.DTO.CommentDTO;
 import org.mons.demo1.DTO.MovieDTO;
 import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
@@ -24,7 +25,9 @@ public class MovieServiceImpl {
 
 
     public MovieDTO getById(int id) {
-        return new MovieDTO(dataRaw.getById(id));
+        MovieDTO movieDTO  =new  MovieDTO(dataRaw.getById(id));
+        movieDTO.setComments(getComments(id));
+        return movieDTO;
     }
 
 
@@ -50,6 +53,12 @@ public class MovieServiceImpl {
     private Movie dtoToMovie(MovieDTO DTO){
         return new Movie(DTO.getId(), DTO.getTitle(), DTO.getDescription(), DTO.getYear(),new ArrayList<Comment>());
     }
+
+
+    public List<CommentDTO> getComments(int movieId){
+        return ((MovieORMImpl)dataRaw).movieComments(movieId).stream().map(CommentDTO::new).collect(Collectors.toList());
+    }
+
 
 
 

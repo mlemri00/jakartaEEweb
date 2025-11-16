@@ -1,6 +1,7 @@
 package org.mons.demo1.DAO;
 
 import jakarta.persistence.EntityManager;
+import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.ConnectionManager;
 
@@ -19,6 +20,7 @@ public class MovieORMImpl implements MovieService{
     public Movie getById(int id) {
         EntityManager em = ConnectionManager.getEntityManager();
         Movie movie = em.find(Movie.class, id);
+
         em.close();
         return movie;
     }
@@ -77,5 +79,14 @@ public class MovieORMImpl implements MovieService{
         return false;
     }
 
+
+    public List<Comment> movieComments (int movieID) {
+        EntityManager em = ConnectionManager.getEntityManager();
+
+       List<Comment> comments =  em.createQuery("select c from Comment c where c.movie.id =  :movieId",Comment.class).
+               setParameter("movieId",movieID).getResultList();
+        em.close();
+        return comments;
+    }
 
 }
