@@ -10,4 +10,5 @@ public interface MovieService {
     public Movie getById(int id);
     public boolean addMovie(Movie movie);
     public Movie deleteMovieById(int id);
+
 }

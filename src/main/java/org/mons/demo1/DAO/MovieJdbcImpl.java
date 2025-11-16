@@ -1,7 +1,9 @@
 package org.mons.demo1.DAO;
 
+import jakarta.persistence.EntityManager;
 import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
+import org.mons.demo1.util.ConnectionManager;
 import org.mons.demo1.util.jdbcConnector;
 
 import java.sql.Connection;
@@ -43,14 +45,14 @@ public class MovieJdbcImpl implements MovieService{
 
     @Override
     public Movie getById(int id) {
-        Movie movie;
-
+        Movie movie = new Movie();
+        ResultSet result;
         try{
             Connection connection = jdbcConnector.getConnection();
 
             PreparedStatement pst = connection.prepareStatement("SELECT * FROM movies where id = ? ");
             pst.setInt(1,id);
-            ResultSet result = pst.executeQuery();
+             result = pst.executeQuery();
             movie = new Movie(
                     result.getLong("id"),
                     result.getString("title"),
@@ -66,8 +68,9 @@ public class MovieJdbcImpl implements MovieService{
             System.out.println("No se pudo ejecutar la conexión con la bases de datos");
 
         }
+        r
 
-        return new Movie();
+        return movie;
     }
 
     @Override
@@ -114,6 +117,7 @@ public class MovieJdbcImpl implements MovieService{
                     result.getInt("year"),
                     new ArrayList<Comment>()
             );
+            connection.close();
 
         }catch (SQLException e){
             System.out.println("No se pudo ejecutar la conexión con la bases de datos");
@@ -129,7 +133,7 @@ public class MovieJdbcImpl implements MovieService{
             affectedRows =pst.executeUpdate();
 
 
-
+            connection.close();
         }catch (SQLException s){
 
             System.out.println("No se pudo ejecutar la conexión con la bases de datos");
@@ -143,4 +147,48 @@ public class MovieJdbcImpl implements MovieService{
 
 
     }
+    public boolean updateMovie(Movie movie)  {
+        Connection connection = jdbcConnector.getConnection();
+        try {
+            PreparedStatement pst = connection.prepareStatement("UPDATE movies set title = ? , description = ?, year = ? where id = ?");
+            pst.setString(1, movie.getTitle());
+            pst.setString(2, movie.getDescription());
+            pst.setInt(3,movie.getYear());
+            pst.setLong(4,movie.getId());
+            connection.close();
+            pst.executeUpdate();
+
+            return true;
+        }catch (Exception e){
+
+        }
+
+
+        return false;
+    }
+    public List<Comment> movieComments(int movieID){
+        List<Comment> comments = new ArrayList<>();
+        Connection connection = jdbcConnector.getConnection();
+        try {
+            PreparedStatement pst = connection.prepareStatement("select * from comments where movieId = ?");
+            pst.setInt(1,movieID);
+
+            ResultSet results = pst.executeQuery();
+
+            while (results.next()){
+                comments.add(new Comment(
+                        results.getLong("id"),
+                        results.getString("commentText")));
+            }
+            connection.close();
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+
+        }
+
+        return comments;
+    }
+
+
 }

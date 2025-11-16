@@ -70,6 +70,7 @@ public class MovieORMImpl implements MovieService{
         try{
             em.getTransaction().begin();
             em.persist(movieToFetch);
+            return true;
         }catch (Exception e){
             em.getTransaction().rollback();
         }

@@ -20,10 +20,10 @@ public class Comment {
     public Comment(){
 
     }
-    public Comment (long id, String comment,Movie movie){
+    public Comment (long id, String comment){
         this.id=id;
         this.commentText=comment;
-        this.movie=movie;
+
     }
 
 

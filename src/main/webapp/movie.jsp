@@ -15,12 +15,19 @@
         flex-direction: column;
         width: 30%;
     }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
 </style>
 <head>
     <title>Movie</title>
 </head>
 <body>
+<div class="main">
 <div>
    <form action="movies" method="post" id="updateForm">
        <input type="hidden" name="_method" value="put">
@@ -36,12 +43,11 @@
    </form>
 
 </div>
-<h2>Comentaris</h2>
+<h2>Comments</h2>
 <ol>
     <c:forEach var="comment" items="${movie.getComments()}">
         <li><c:out value="${comment.getCommentText()} "/></li>
     </c:forEach>
-    <c:out value="${movie.getComments().size()}"/>
 
 </ol>
 
@@ -51,6 +57,6 @@
     <input type="hidden" name="id" value="<c:out value="${movie.getId()}"/>">
     <button type="submit">Delete</button>
 </form>
-
+</div>
 </body>
 </html>
