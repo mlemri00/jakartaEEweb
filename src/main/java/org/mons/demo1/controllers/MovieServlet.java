@@ -5,15 +5,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mons.demo1.DTO.MovieDTO;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.DAO.MovieORMImpl;
+import org.mons.demo1.services.MovieServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
-    MovieORMImpl MSOI = new MovieORMImpl();
+    MovieServiceImpl MSOI = new MovieServiceImpl();
 
 
     @Override
@@ -39,14 +41,14 @@ public class MovieServlet extends HttpServlet {
         int idInt = Integer.parseInt(id);
 
 
-        Movie movie = MSOI.getById(idInt);
+        MovieDTO movie = MSOI.getById(idInt);
         req.setAttribute("movie",movie);
         req.getRequestDispatcher("/movie.jsp").forward(req,resp);
 
     }
 
     private void showAllMovies(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Movie> movies = MSOI.getMovies();
+        List<MovieDTO> movies = MSOI.getMovies();
 
         req.setAttribute("movies",movies);
         req.getRequestDispatcher("/movies.jsp").forward(req,resp);
@@ -75,7 +77,7 @@ public class MovieServlet extends HttpServlet {
            year = Integer.parseInt(req.getParameter("year").trim());
 
            if (!title.isEmpty() && !description.isEmpty() && year != 0) {
-               MSOI.addMovie(new Movie(0L, title, description, year));
+               MSOI.addMovie(new MovieDTO(0L, title, description, year));
 
            }
            resp.sendRedirect("movies");
@@ -98,7 +100,7 @@ public class MovieServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Movie movie = new Movie(
+        MovieDTO movie = new MovieDTO(
                Long.parseLong(req.getParameter("id")),
                 req.getParameter("title"),
                 req.getParameter("description"),

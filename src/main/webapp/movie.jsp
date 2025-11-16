@@ -9,12 +9,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<style>
+    #updateForm{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+</style>
 <head>
     <title>Movie</title>
 </head>
 <body>
 <div>
-   <form action="movies" method="post" >
+   <form action="movies" method="post" id="updateForm">
        <input type="hidden" name="_method" value="put">
        <input type="hidden" name="id" value="<c:out value="${movie.getId()}"/>">
        <label for="title">Title</label>
