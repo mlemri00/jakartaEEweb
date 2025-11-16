@@ -1,5 +1,6 @@
 package org.mons.demo1.DAO;
 
+import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.jdbcConnector;
 
@@ -30,7 +31,7 @@ public class MovieJdbcImpl implements MovieService{
                 String movieDesc = result.getString("description");
                 int movieYear= result.getInt("year");
 
-                movies.add(new Movie(movieId,movieTitle,movieDesc,movieYear));
+                movies.add(new Movie(movieId,movieTitle,movieDesc,movieYear,new ArrayList<Comment>()));
             }
             connection.close();
         } catch (SQLException sqlException){
@@ -55,6 +56,7 @@ public class MovieJdbcImpl implements MovieService{
                     result.getString("title"),
                     result.getString("description"),
                     result.getInt("year")
+                    ,new ArrayList<Comment>()
 
             );
             connection.close();
@@ -109,7 +111,8 @@ public class MovieJdbcImpl implements MovieService{
                     result.getLong("id"),
                     result.getString("title"),
                     result.getString("description"),
-                    result.getInt("year")
+                    result.getInt("year"),
+                    new ArrayList<Comment>()
             );
 
         }catch (SQLException e){

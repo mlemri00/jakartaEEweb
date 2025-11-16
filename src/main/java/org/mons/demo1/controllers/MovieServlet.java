@@ -6,16 +6,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.mons.demo1.DTO.MovieDTO;
+import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.DAO.MovieORMImpl;
 import org.mons.demo1.services.MovieServiceImpl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet {
-    MovieServiceImpl MSOI = new MovieServiceImpl();
+     MovieServiceImpl MSOI = new MovieServiceImpl();
 
 
     @Override
@@ -42,7 +44,10 @@ public class MovieServlet extends HttpServlet {
 
 
         MovieDTO movie = MSOI.getById(idInt);
+        List<Comment>comments= movie.getComments();
+
         req.setAttribute("movie",movie);
+        req.setAttribute("comments",comments);
         req.getRequestDispatcher("/movie.jsp").forward(req,resp);
 
     }
@@ -107,7 +112,7 @@ public class MovieServlet extends HttpServlet {
                Integer.parseInt(req.getParameter("year"))
         );
 
-        MSOI.updateMovie(movie);
+      //  MSOI.updateMovie(movie);
         resp.sendRedirect("movies");
 
 

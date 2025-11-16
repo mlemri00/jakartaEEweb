@@ -37,6 +37,15 @@
 
 </div>
 
+<ul>
+    <c:forEach var="comment" items="${movie.getComments()}">
+        <li><c:out value="${comment.getComment()} "/></li>
+    </c:forEach>
+    <c:out value="${comments.size()}"/>
+
+</ul>
+
+
 <form action="movies" method="post">
 <input type="hidden" value="delete" name="_method">
     <input type="hidden" name="id" value="<c:out value="${movie.getId()}"/>">

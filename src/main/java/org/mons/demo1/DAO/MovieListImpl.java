@@ -2,32 +2,34 @@ package org.mons.demo1.DAO;
 
 
 
+import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MovieListImpl implements MovieService {
 
     private static List<Movie>movies;
-
+    private static ArrayList<Comment>com = new ArrayList<>();
      static {
          movies = List.of(
-                 new Movie(1, "Inception", "A thief enters dreams to steal secrets.", 2010),
-                 new Movie(2, "The Matrix", "A hacker discovers reality is a simulation.", 1999),
-                 new Movie(3, "Interstellar", "Explorers travel through a wormhole in space.", 2014),
-                 new Movie(4, "The Dark Knight", "Batman faces the Joker in Gotham City.", 2008),
-                 new Movie(5, "Parasite", "A poor family infiltrates a wealthy household.", 2019),
-                 new Movie(6, "Pulp Fiction", "Interwoven crime stories in Los Angeles.", 1994),
-                 new Movie(7, "The Shawshank Redemption", "A man imprisoned for a crime he didn't commit.", 1994),
-                 new Movie(8, "Fight Club", "An underground fight club forms with dark motives.", 1999),
-                 new Movie(9, "Forrest Gump", "The life journey of a kind-hearted man.", 1994),
-                 new Movie(10, "The Lord of the Rings: The Fellowship of the Ring", "A quest to destroy a powerful ring.", 2001),
-                 new Movie(11, "Gladiator", "A betrayed general seeks revenge in Rome.", 2000),
-                 new Movie(12, "Titanic", "A love story aboard a doomed ship.", 1997),
-                 new Movie(13, "The Godfather", "The story of a powerful mafia family.", 1972),
-                 new Movie(14, "Avatar", "A human explores an alien world on Pandora.", 2009),
-                 new Movie(15, "The Avengers", "Earth’s mightiest heroes team up to save the world.", 2012)
+                 new Movie(1, "Inception", "A thief enters dreams to steal secrets.", 2010,com),
+                 new Movie(2, "The Matrix", "A hacker discovers reality is a simulation.", 1999,com),
+                 new Movie(3, "Interstellar", "Explorers travel through a wormhole in space.", 2014,com),
+                 new Movie(4, "The Dark Knight", "Batman faces the Joker in Gotham City.", 2008,com),
+                 new Movie(5, "Parasite", "A poor family infiltrates a wealthy household.", 2019,com),
+                 new Movie(6, "Pulp Fiction", "Interwoven crime stories in Los Angeles.", 1994,com),
+                 new Movie(7, "The Shawshank Redemption", "A man imprisoned for a crime he didn't commit.", 1994,com),
+                 new Movie(8, "Fight Club", "An underground fight club forms with dark motives.", 1999,com),
+                 new Movie(9, "Forrest Gump", "The life journey of a kind-hearted man.", 1994,com),
+                 new Movie(10, "The Lord of the Rings: The Fellowship of the Ring", "A quest to destroy a powerful ring.", 2001,com),
+                 new Movie(11, "Gladiator", "A betrayed general seeks revenge in Rome.", 2000,com),
+                 new Movie(12, "Titanic", "A love story aboard a doomed ship.", 1997,com),
+                 new Movie(13, "The Godfather", "The story of a powerful mafia family.", 1972,com),
+                 new Movie(14, "Avatar", "A human explores an alien world on Pandora.", 2009,com),
+                 new Movie(15, "The Avengers", "Earth’s mightiest heroes team up to save the world.", 2012,com)
          );
      }
 

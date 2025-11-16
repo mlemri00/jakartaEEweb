@@ -34,8 +34,8 @@
         <c:forEach var="movie" items="${movies}">
     <li>
     <a href="movies?id=<c:out value='${movie.getId()}'/>"> <c:out value="${movie.getTitle()} ${movie.getYear()}"/></a>
+            </li>
         </c:forEach>
-    </li>
 </ul>
     <form id="saveForm" action="movies" method="post">
         <input type="hidden" value="post" name="_method">

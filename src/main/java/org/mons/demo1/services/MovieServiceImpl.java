@@ -4,9 +4,11 @@ import jakarta.persistence.EntityManager;
 import org.mons.demo1.DAO.MovieORMImpl;
 import org.mons.demo1.DAO.MovieService;
 import org.mons.demo1.DTO.MovieDTO;
+import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
 import org.mons.demo1.util.ConnectionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +48,7 @@ public class MovieServiceImpl {
 
 
     private Movie dtoToMovie(MovieDTO DTO){
-        return new Movie(DTO.getId(), DTO.getTitle(), DTO.getDescription(), DTO.getYear());
+        return new Movie(DTO.getId(), DTO.getTitle(), DTO.getDescription(), DTO.getYear(),new ArrayList<Comment>());
     }
 
 
