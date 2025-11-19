@@ -20,8 +20,6 @@ public class MovieORMImpl implements MovieService{
     public Movie getById(int id) {
         EntityManager em = ConnectionManager.getEntityManager();
         Movie movie = em.find(Movie.class, id);
-        List<Comment>commentList= movie.getComments();
-        System.out.println("--------------------------------------------------------------------------------------------------------------------"+commentList);
         em.close();
         return movie;
     }
