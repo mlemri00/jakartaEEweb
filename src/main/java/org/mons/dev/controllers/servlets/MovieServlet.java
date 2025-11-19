@@ -5,15 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
 import org.mons.dev.DTO.MovieDTO;
 import org.mons.dev.services.MovieServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
-//@WebFilter("/movies")
 @WebServlet(name="movieServlet",value = "/movies")
-public class MovieServlet extends HttpServlet implements Filter {
+public class MovieServlet extends HttpServlet {
      MovieServiceImpl MSOI = new MovieServiceImpl();
 
 
@@ -113,19 +112,4 @@ public class MovieServlet extends HttpServlet implements Filter {
 
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest  request  = (HttpServletRequest)  servletRequest;
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        HttpSession session = request.getSession(false);
-        if (session == null){
-            response.sendRedirect("login");
-        }
-    }
 }

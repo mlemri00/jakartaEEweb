@@ -9,7 +9,10 @@ public class UserServiceImpl {
 
     public boolean validate(String username, String password){
         User user = userDaoService.getUser(username);
-        return user.getPassword().equals(password);
+        if (user!=null && user.getPassword().equals(password)){
+            return true;
+        }
+        return false;
     }
 
 

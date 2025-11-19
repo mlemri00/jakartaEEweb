@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
       String password = req.getParameter("password");
 
       if (userService.validate(userName,password)){
+          req.getSession(true);
           resp.sendRedirect("movies");
       }else{
           resp.sendRedirect("login");

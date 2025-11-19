@@ -8,11 +8,17 @@ import org.mons.dev.util.ConnectionManager;
 public class UserOrmImpl {
     public User getUser(String username){
         EntityManager em = ConnectionManager.getEntityManager();
+        User user;
         Query query = em.createQuery("select u from User u where u.userName = :userName")
                 .setParameter("userName",username);
-        System.out.println("------------------------------------------------------------------asdfas-dfasdfasdfasdfasdf");
-        User user = (User) query.getSingleResult();
-        System.out.println("-----------------------------    "+ user.getFirstName() + "    ------------------");
+
+        try {
+            user = (User) query.getSingleResult();
+        }catch (Exception e){
+            return null;
+        }
+
+        em.close();
         return user;
     }
 
