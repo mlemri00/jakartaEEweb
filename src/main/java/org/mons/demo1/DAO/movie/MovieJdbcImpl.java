@@ -1,9 +1,7 @@
-package org.mons.demo1.DAO;
+package org.mons.demo1.DAO.movie;
 
-import jakarta.persistence.EntityManager;
 import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
-import org.mons.demo1.util.ConnectionManager;
 import org.mons.demo1.util.jdbcConnector;
 
 import java.sql.Connection;
@@ -13,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieJdbcImpl implements MovieService{
+public class MovieJdbcImpl implements MovieService {
 
     @Override
     public List<Movie> getMovies() {

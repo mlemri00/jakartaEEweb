@@ -8,13 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.mons.demo1.DTO.MovieDTO;
-import org.mons.demo1.models.Comment;
-import org.mons.demo1.models.Movie;
-import org.mons.demo1.DAO.MovieORMImpl;
 import org.mons.demo1.services.MovieServiceImpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 @WebFilter("/movies")
 @WebServlet(name="movieServlet",value = "/movies")
@@ -130,7 +126,7 @@ public class MovieServlet extends HttpServlet implements Filter {
 
         HttpSession session = request.getSession(false);
         if (session == null){
-            response.sendRedirect("/login");
+            response.sendRedirect("login");
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.mons.demo1.DAO;
+package org.mons.demo1.DAO.movie;
 
 import jakarta.persistence.EntityManager;
 import org.mons.demo1.models.Comment;
@@ -7,7 +7,7 @@ import org.mons.demo1.util.ConnectionManager;
 
 import java.util.List;
 
-public class MovieORMImpl implements MovieService{
+public class MovieORMImpl implements MovieService {
     @Override
     public List<Movie> getMovies() {
        EntityManager em = ConnectionManager.getEntityManager();

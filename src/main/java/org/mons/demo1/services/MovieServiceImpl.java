@@ -1,14 +1,11 @@
 package org.mons.demo1.services;
 
-import jakarta.persistence.EntityManager;
-import org.mons.demo1.DAO.MovieJdbcImpl;
-import org.mons.demo1.DAO.MovieORMImpl;
-import org.mons.demo1.DAO.MovieService;
+import org.mons.demo1.DAO.movie.MovieORMImpl;
+import org.mons.demo1.DAO.movie.MovieService;
 import org.mons.demo1.DTO.CommentDTO;
 import org.mons.demo1.DTO.MovieDTO;
 import org.mons.demo1.models.Comment;
 import org.mons.demo1.models.Movie;
-import org.mons.demo1.util.ConnectionManager;
 
 import java.util.ArrayList;
 import java.util.List;
