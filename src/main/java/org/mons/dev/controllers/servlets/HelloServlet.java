@@ -1,4 +1,4 @@
-package org.mons.dev.controllers;
+package org.mons.dev.controllers.servlets;
 
 import java.io.*;
 

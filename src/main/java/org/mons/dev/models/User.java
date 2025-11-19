@@ -17,6 +17,7 @@ public class User {
     private String userName;
     @Column(name = "birth_date")
     private Date birthDate;
+    private String email;
     private String password;
     public User(String firstName, String lastName, String userName, Date birthDate, String password){
         this.firstName=firstName;
@@ -29,6 +30,12 @@ public class User {
 
     public User(){
 
+    }
+    public String getFirstName(){
+        return this.firstName;
+    }
+    public String getPassword(){
+        return this.password;
     }
 
 

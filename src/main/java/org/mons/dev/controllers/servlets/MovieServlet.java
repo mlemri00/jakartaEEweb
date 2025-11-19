@@ -1,7 +1,6 @@
-package org.mons.dev.controllers;
+package org.mons.dev.controllers.servlets;
 
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +11,7 @@ import org.mons.dev.services.MovieServiceImpl;
 
 import java.io.IOException;
 import java.util.List;
-@WebFilter("/movies")
+//@WebFilter("/movies")
 @WebServlet(name="movieServlet",value = "/movies")
 public class MovieServlet extends HttpServlet implements Filter {
      MovieServiceImpl MSOI = new MovieServiceImpl();
