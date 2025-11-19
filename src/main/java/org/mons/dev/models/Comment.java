@@ -1,9 +1,8 @@
-package org.mons.demo1.models;
+package org.mons.dev.models;
 
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 @Table(name = "comments")

@@ -4,9 +4,9 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
              version="3.2">
     <persistence-unit name="moviesMySQL">
-    <class>org.mons.demo1.models.Movie</class>
-    <class>org.mons.demo1.models.Comment</class>
-    <class>org.mons.demo1.models.User</class>
+    <class>org.mons.dev.models.Movie</class>
+    <class>org.mons.dev.models.Comment</class>
+    <class>org.mons.dev.models.User</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db:3306/movies"/>

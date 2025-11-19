@@ -1,8 +1,8 @@
-package org.mons.demo1.DAO.movie;
+package org.mons.dev.DAO.movie;
 
-import org.mons.demo1.models.Comment;
-import org.mons.demo1.models.Movie;
-import org.mons.demo1.util.jdbcConnector;
+import org.mons.dev.models.Comment;
+import org.mons.dev.models.Movie;
+import org.mons.dev.util.jdbcConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

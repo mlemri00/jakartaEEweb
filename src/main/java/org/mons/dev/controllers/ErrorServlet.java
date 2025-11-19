@@ -1,4 +1,4 @@
-package org.mons.demo1.controllers;
+package org.mons.dev.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

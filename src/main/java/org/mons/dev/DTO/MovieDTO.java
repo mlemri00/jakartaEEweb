@@ -1,7 +1,6 @@
-package org.mons.demo1.DTO;
+package org.mons.dev.DTO;
 
-import org.mons.demo1.models.Comment;
-import org.mons.demo1.models.Movie;
+import org.mons.dev.models.Movie;
 
 import java.util.List;
 

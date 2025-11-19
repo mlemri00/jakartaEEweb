@@ -1,4 +1,4 @@
-package org.mons.demo1.models;
+package org.mons.dev.models;
 
 import jakarta.persistence.*;
 

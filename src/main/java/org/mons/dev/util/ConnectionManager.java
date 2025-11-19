@@ -1,4 +1,4 @@
-package org.mons.demo1.util;
+package org.mons.dev.util;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

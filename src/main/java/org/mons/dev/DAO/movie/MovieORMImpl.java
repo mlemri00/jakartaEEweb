@@ -1,9 +1,9 @@
-package org.mons.demo1.DAO.movie;
+package org.mons.dev.DAO.movie;
 
 import jakarta.persistence.EntityManager;
-import org.mons.demo1.models.Comment;
-import org.mons.demo1.models.Movie;
-import org.mons.demo1.util.ConnectionManager;
+import org.mons.dev.models.Comment;
+import org.mons.dev.models.Movie;
+import org.mons.dev.util.ConnectionManager;
 
 import java.util.List;
 

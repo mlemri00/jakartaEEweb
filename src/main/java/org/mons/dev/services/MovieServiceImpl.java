@@ -1,11 +1,11 @@
-package org.mons.demo1.services;
+package org.mons.dev.services;
 
-import org.mons.demo1.DAO.movie.MovieORMImpl;
-import org.mons.demo1.DAO.movie.MovieService;
-import org.mons.demo1.DTO.CommentDTO;
-import org.mons.demo1.DTO.MovieDTO;
-import org.mons.demo1.models.Comment;
-import org.mons.demo1.models.Movie;
+import org.mons.dev.DAO.movie.MovieORMImpl;
+import org.mons.dev.DAO.movie.MovieService;
+import org.mons.dev.DTO.CommentDTO;
+import org.mons.dev.DTO.MovieDTO;
+import org.mons.dev.models.Comment;
+import org.mons.dev.models.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

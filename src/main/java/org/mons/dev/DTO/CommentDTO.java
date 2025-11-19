@@ -1,6 +1,6 @@
-package org.mons.demo1.DTO;
+package org.mons.dev.DTO;
 
-import org.mons.demo1.models.Comment;
+import org.mons.dev.models.Comment;
 
 public class CommentDTO {
     private long id;

@@ -1,4 +1,4 @@
-package org.mons.demo1.services;
+package org.mons.dev.services;
 
 public class UserServiceImpl {
 }

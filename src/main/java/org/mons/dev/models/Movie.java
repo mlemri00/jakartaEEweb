@@ -1,13 +1,10 @@
-package org.mons.demo1.models;
+package org.mons.dev.models;
 
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.stream.Collectors.toList;
 
 @Entity
 @Table(name = "movies")

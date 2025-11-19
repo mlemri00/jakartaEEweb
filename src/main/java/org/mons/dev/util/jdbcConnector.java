@@ -1,8 +1,7 @@
-package org.mons.demo1.util;
+package org.mons.dev.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class jdbcConnector {

@@ -1,6 +1,6 @@
-package org.mons.demo1.DAO.movie;
+package org.mons.dev.DAO.movie;
 
-import org.mons.demo1.models.Movie;
+import org.mons.dev.models.Movie;
 
 import java.util.List;
 
