@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class MovieServiceImpl {
 
-    MovieService DAOserv = new MovieJdbcImpl();
+    MovieService DAOserv = new MovieORMImpl();
 
 
     public List<MovieDTO> getMovies() {
@@ -26,7 +26,6 @@ public class MovieServiceImpl {
 
     public MovieDTO getById(int id) {
         MovieDTO movieDTO  =new  MovieDTO(DAOserv.getById(id));
-        movieDTO.setComments(getComments(id));
         return movieDTO;
     }
 
@@ -45,7 +44,7 @@ public class MovieServiceImpl {
     }
 
     public boolean updateMovie(MovieDTO movieDTO){
-        boolean updated = ((MovieJdbcImpl)DAOserv).updateMovie(dtoToMovie(movieDTO));
+        boolean updated = ((MovieORMImpl)DAOserv).updateMovie(dtoToMovie(movieDTO));
         return updated;
     }
 
@@ -56,7 +55,7 @@ public class MovieServiceImpl {
 
 
     public List<CommentDTO> getComments(int movieId){
-        return ((MovieJdbcImpl)DAOserv).movieComments(movieId).stream().map(CommentDTO::new).collect(Collectors.toList());
+        return ((MovieORMImpl)DAOserv).movieComments(movieId).stream().map(CommentDTO::new).collect(Collectors.toList());
     }
 
 

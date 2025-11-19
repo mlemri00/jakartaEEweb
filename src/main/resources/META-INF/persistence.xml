@@ -11,6 +11,10 @@
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db:3306/movies"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="root8081"/>
+
+
+            <property name="openjpa.Log" value="DefaultLevel=WARN,Runtime=INFO,Tool=INFO,SQL=TRACE"/>
+
         </properties>
     </persistence-unit>
 </persistence>

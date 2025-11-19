@@ -24,7 +24,6 @@ public class MovieServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getMethod().equalsIgnoreCase("post")){
             String method =  req.getParameter("_method");
-           if (method == null){return;}
             switch (method){
                 case "delete" -> doDelete(req, resp);
                 case "put" -> doPut(req, resp);
@@ -33,8 +32,8 @@ public class MovieServlet extends HttpServlet {
                     return;
                 }
             }
-        }else{//Preguntar a Pere, porque si se saca el super.service del else el formulario al recargar la pàgina se reenvia, y si siempre hay que tener los sendRedirect bajo control o se doble ejecutan
-            super.service(req,resp);
+        }else {
+            super.service(req, resp);
         }
     }
 

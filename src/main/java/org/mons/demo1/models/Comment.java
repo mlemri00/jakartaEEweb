@@ -11,18 +11,18 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String commentText;
+    private String comment_text;
     private Timestamp createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "movieId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
     public Comment(){
 
     }
     public Comment (long id, String comment){
         this.id=id;
-        this.commentText=comment;
+        this.comment_text=comment;
 
     }
 
@@ -31,7 +31,7 @@ public class Comment {
         return id;
     }
     public String getComment(){
-        return commentText;
+        return comment_text;
     }
 
     public Movie getMovie(){

@@ -3,8 +3,11 @@ package org.mons.demo1.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 @Table(name = "movies")
@@ -17,7 +20,7 @@ public class Movie {
     @Column(name = "description")
     private String description;
     private int year;
-    @OneToMany (mappedBy = "movie")
+    @OneToMany (mappedBy = "movie", fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
 
@@ -27,6 +30,7 @@ public class Movie {
         this.description= description;
         this.year=year;
         this.comments=comments;
+
     }
 
     public Movie() {

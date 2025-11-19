@@ -17,12 +17,14 @@ public class MovieDTO {
         this.description=movie.getDescription();
         this.title= movie.getTitle();
         this.year=movie.getYear();
+        this.comments= movie.getComments().stream().map(CommentDTO::new).toList();
     }
     public MovieDTO(long id, String title,String description, int year){
         this.id=id;
         this.title=title;
         this.description=description;
         this.year=year;
+
     }
 
     public long getId(){
@@ -44,7 +46,5 @@ public class MovieDTO {
     public void setComments(List<CommentDTO>comments){
         this.comments=comments;
     }
-
-
 
 }

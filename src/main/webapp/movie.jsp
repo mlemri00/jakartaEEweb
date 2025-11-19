@@ -45,6 +45,7 @@
 </div>
 <h2>Comments</h2>
 <ol>
+    <c:out value="${movie.getComments()}" />
     <c:forEach var="comment" items="${movie.getComments()}">
         <li><c:out value="${comment.getCommentText()} "/></li>
     </c:forEach>
